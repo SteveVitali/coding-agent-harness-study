@@ -1,0 +1,42 @@
+name: Citation correction
+description: Report a claim whose cited path:line does not support it at the pinned SHA
+title: "[correction] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections follow the study's own evidence rules: claims are pinned to the commit SHAs in the README.
+        For findings that were true at the pin but have changed upstream, use a `drift` issue instead.
+  - type: input
+    id: location
+    attributes:
+      label: Where is the claim?
+      description: Research file and section/line, or evidence-ledger row.
+      placeholder: research/03-opencode.md §E, "Websearch..." bullet
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: The claim as written
+      description: Quote the claim you are challenging.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Counter-evidence at the pinned SHA
+      description: "`repo-relative/path.ext:line-range` plus a ≤3-line verbatim snippet, read at the pinned commit."
+      placeholder: |
+        packages/opencode/src/tool/websearch.ts:30-37 @ 66fdd51f0d6d...
+        > snippet
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed correction
+      description: What should the corrected claim say (or should it be withdrawn)?
+    validations:
+      required: false

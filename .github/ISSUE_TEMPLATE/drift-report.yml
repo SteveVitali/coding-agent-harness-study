@@ -1,0 +1,26 @@
+name: Drift report
+description: A finding was true at the pinned SHA but no longer holds upstream
+title: "[drift] "
+labels: ["drift"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Which finding has drifted?
+      placeholder: research/07-mini-swe-agent.md — "README '100 lines' claim"
+    validations:
+      required: true
+  - type: input
+    id: sha
+    attributes:
+      label: Upstream SHA where the change is visible
+      placeholder: abc1234...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What changed
+      description: "`path:line` at the newer SHA, plus the commit or PR that changed it if known."
+    validations:
+      required: true
